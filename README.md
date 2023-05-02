@@ -1,7 +1,9 @@
 # pokellection
 
-## search and view card prices
+ryan hello hello hello
 
+## search and view card prices
+**changes made - faisal
 Do you have (tons?) of pokemon cards in your collection? Do you want to see how much that collection is worth? pokellection is a great way to search current market valuations for your cards.
 
 ### Tools
@@ -16,3 +18,5 @@ Built using:
 contributors: Ijoo, YoHan, Wayland, Kenny and Kelvin
 
 curtis was here. Trying to merge.
+
+Sherry
