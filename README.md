@@ -15,4 +15,4 @@ Built using:
 
 contributors: Ijoo, YoHan, Wayland, Kenny and Kelvin
 
-curtis was here.
+curtis was here. Trying to merge.
