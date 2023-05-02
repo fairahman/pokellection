@@ -14,3 +14,5 @@ Built using:
 ### Catch em all!
 
 contributors: Ijoo, YoHan, Wayland, Kenny and Kelvin
+
+curtis was here
