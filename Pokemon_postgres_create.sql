@@ -17,6 +17,5 @@ CREATE TABLE public.pokemon (
 	"updatedDate" varchar,
 	"image" varchar
 	
-
 );
 

@@ -6,6 +6,8 @@ pokemon.configure(akey);
 
 const APIController = {};
 
+// calling the API
+
 APIController.call = (req, res, next) => {
   fetch('https://api.pokemontcg.io/v2/cards/')
     .then((data) => data.json())
@@ -22,6 +24,11 @@ APIController.call = (req, res, next) => {
       return next(errorObj);
     });
 };
+
+// loop though the first 100 responses from the API
+// create an array of 100 elements, each element is a query
+// then with queryDB they are looping thorough all of those elements 
+// 
 
 APIController.instantiateTable = (req, res, next) => {
   const data = res.locals.pokemonData.data;
@@ -44,6 +51,9 @@ APIController.instantiateTable = (req, res, next) => {
   queryDB(newData);
   return next();
 };
+
+// check if the selected pokemon exists in the res.locals object
+// if res locals does not contain selected Pokemon, return error
 
 APIController.pokemonAPIQuery = (req, res, next) => {
   // if the response doesn't yet have the result
@@ -98,6 +108,14 @@ APIController.pokemonAPIQuery = (req, res, next) => {
     next();
   }
 };
+
+// deconstructing the request body.name
+// query SQL db with the varible in 'str'
+// not sure what 'ILIKE' is doing in the sql query
+// then this string is passed into 'db.query' ... 
+// then the promise chain is being handled afterward and we return 'data.rows[0]'
+// then we build an object by assinging the result of the query to properties
+// then saved to res.locals as 'selected pokemon' property
 
 APIController.getData = (req, res, next) => {
   const name = req.body.name;
