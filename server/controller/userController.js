@@ -4,6 +4,11 @@ const SALT_WORK_FACTOR = 10;
 
 const userController = {};
 
+// this is where we add some tastyy salt
+// deconstruct the request body to have two variables named 'username' and 'password'
+// using bcrypt we are hashing and storing the user to their MONGO database
+// we're setting res.locals.newUser to the returned data which is likely the new user
+
 userController.createUser = (req, res, next) => {
     const { username } = req.body;
     let { password } = req.body;
@@ -25,6 +30,9 @@ userController.createUser = (req, res, next) => {
         })
     })
 }
+
+// we are sending a findOne request with the username pulled from the request body to the MONGO database
+
 
 userController.getUser = (req, res, next) => {
     //const { username } = req.body;

@@ -6,13 +6,20 @@ const PORT = 3000;
 const userController = require('./controller/userController');
 
 // app.use('/', express.static(path.join(__dirname,'')))
+
+//handle parsing request body
 app.use(express.json());
 
 // app.get('/', APIController.call, APIController.instantiateTable, (req, res) => {
 //   return res.status(200).send('random');
 // });
-
+ 
 // serves client request for a card
+// handle post requests to the '/getpokemon' route
+// it runs two middleware 'getData' and 'pokemonAPIQuery'
+// they assign res.locals to an object which we check on line 28 for the property 'selectedPokemon'
+// we then return res.locals.selectedPokemon back to the frontend
+
 app.post(
   '/getPokemon',
   APIController.getData,
@@ -28,23 +35,34 @@ app.post(
   }
 );
 
+// this looks like a TEST
+
 app.get('/hello', (req, res) => {
   console.log('made a request');
   res.status(200).send('hello I am a response');
 });
 
+// this route is handling requests to POSTs toward /signup
+
 app.post("/signup", userController.createUser, (req, res) => {
-  console.log('IS THISW ROKING')
+  console.log('IS THIS WOKING')
   res.status(200).send(res.locals.newUser);
 })
+
+// this route is handling requests to POSTs towrad /login 
 
 app.post("/login", userController.getUser, (req, res) => {
   res.status(200).json(res.locals.truthy);
 })
 
+
+// global route error handler
+
 app.use('*', (req, res) => {
   res.sendStatus(404);
 });
+
+// global error handler for the middleware
 
 app.use((err, req, res, next) => {
   const defaultErr = {
