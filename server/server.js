@@ -5,6 +5,7 @@ const app = express();
 const PORT = 3000;
 const userController = require('./controller/userController');
 
+
 // app.use('/', express.static(path.join(__dirname,'')))
 
 //handle parsing request body
@@ -13,27 +14,27 @@ app.use(express.json());
 // app.get('/', APIController.call, APIController.instantiateTable, (req, res) => {
 //   return res.status(200).send('random');
 // });
- 
+
 // serves client request for a card
 // handle post requests to the '/getpokemon' route
 // it runs two middleware 'getData' and 'pokemonAPIQuery'
 // they assign res.locals to an object which we check on line 28 for the property 'selectedPokemon'
 // we then return res.locals.selectedPokemon back to the frontend
 
-app.post(
-  '/getPokemon',
-  APIController.getData,
-  APIController.pokemonAPIQuery,
-  (req, res) => {
-    // if the SQL database does not have the result, then redirect
-    console.log('ending the getPoke middleware');
-    if (Object.hasOwn(res.locals, 'selectedPokemon')) {
-      return res.status(200).json(res.locals.selectedPokemon);
-    } else {
-      return res.status(404).redirect('/');
-    }
-  }
-);
+// app.post(
+//   '/getPokemon',
+//   APIController.getData,
+//   APIController.pokemonAPIQuery,
+//   (req, res) => {
+//     // if the SQL database does not have the result, then redirect
+//     console.log('ending the getPoke middleware');
+//     if (Object.hasOwn(res.locals, 'selectedPokemon')) {
+//       return res.status(200).json(res.locals.selectedPokemon);
+//     } else {
+//       return res.status(404).redirect('/');
+//     }
+//   }
+// );
 
 // this looks like a TEST
 
