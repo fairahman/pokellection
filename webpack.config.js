@@ -25,7 +25,7 @@ module.exports = {
       {
         test: /\.s?[ac]ss$/i,
         exclude: /node_modules/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader',]
+        use: [MiniCssExtractPlugin.loader, 'css-loader','sass-loader','postcss-loader']
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -50,7 +50,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({filename: './src/styles.css'}),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],

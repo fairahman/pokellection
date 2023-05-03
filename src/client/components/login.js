@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import MainContainer from './client/containers/mainContainer';
-
+import MainContainer from '../containers/mainContainer';
 import './styles.css';
 
 export default function App(props) {
@@ -46,8 +45,8 @@ export default function App(props) {
         setIsVisible();
     }
     return (
-        <div id="App">
 
+        <div id="App">
             <div id="signup">
                 <input placeholder="Create a Username" ref={newUsername}/>
                 <input placeholder="Create a Password" ref={newPassword}/>
@@ -62,6 +61,7 @@ export default function App(props) {
                 isVisible ? <MainContainer/> : null
             }
         </div>
+        
 
     )
 }
