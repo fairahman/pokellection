@@ -19,8 +19,10 @@ const Home = () => {
     fetch('http://localhost:8080/allPokemon')
       .then(response => response.json())
       .then(data => {
+        console.log(data)
         const newOptions = data.map(pokemon => ({
-          value: pokemon.name,
+          
+          value: pokemon,
           label: pokemon.name
         }));
         setOptions(newOptions);
