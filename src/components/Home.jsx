@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Select from "react-tailwindcss-select";
 import MainContainer from "./MainContainer";
@@ -16,7 +16,7 @@ const Home = () => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/pokemon')
+    fetch('http://localhost:8080/allPokemon')
       .then(response => response.json())
       .then(data => {
         const newOptions = data.map(pokemon => ({
