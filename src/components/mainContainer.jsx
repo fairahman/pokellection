@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SearchBar from "./searchBar"
 import PokemonCard from "./pokemonCard"
 import CardDetail from "./cardDetail"
 
@@ -15,19 +14,6 @@ export default function MainContainer() {
         prices: {
           averageSellPrice: 2.71,
           lowPrice: 0.15,
-          trendPrice: 3.29,
-          germanProLow: 0.0,
-          suggestedPrice: 0.0,
-          reverseHoloSell: 1.75,
-          reverseHoloLow: 0.15,
-          reverseHoloTrend: 3.23,
-          lowPriceExPlus: 1.49,
-          avg1: 1.25,
-          avg7: 3.62,
-          avg30: 3.1,
-          reverseHoloAvg1: 1.75,
-          reverseHoloAvg7: 2.83,
-          reverseHoloAvg30: 2.49,
         },
       },
       images: {
@@ -40,7 +26,6 @@ export default function MainContainer() {
   //update state whenever data is fetched from server
   return(
   <div id="main">
-      <SearchBar data={data} setData={setData}/> 
       <div id="pokemonInfo">
         <PokemonCard card={data.images.small}/>
         <CardDetail name={data.name}price={data.cardmarket.prices.averageSellPrice}/>
