@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
+
 export default function (props) {
+
   const [searchInput, setSearchInput] = useState('');
   const handlerChange = (e) => {
     e.preventDefault();
@@ -35,13 +37,12 @@ export default function (props) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      {/* <input
         type='text'
         placeholder='Start Searching...'
         onChange={handlerChange}
         value={searchInput}
-      />
-      <input type='submit' />
+      /> */}
     </form>
   );
 }

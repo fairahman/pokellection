@@ -1,5 +1,4 @@
 import React, { useState} from "react";
-
 export default function login(props) {
 
 	const[userName, setUserName] = useState(props)
@@ -13,7 +12,7 @@ export default function login(props) {
 	}
 	return (
 		<div className="login">
-			<Form onSubmit={handleSubmit}>
+			{/* <Form onSubmit={handleSubmit}>
 				<Form.Group size="lg" controlId="userName">
 				<Form.Label>Email</Form.Label>
 				<Form.Control autofocus type="email" value={userName} onChange={(e) => setUserName(e.target.value)}
@@ -27,7 +26,8 @@ export default function login(props) {
 				<Button block size="lg" type="submit" disabled={!validateForm()}>
 					Login
 				</Button>
-			</Form>
+			</Form> */}
+            <h1>Login Page</h1>
 		</div>
 	)
 }
