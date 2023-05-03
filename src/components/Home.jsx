@@ -1,20 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Select from "react-tailwindcss-select";
 import MainContainer from "./MainContainer";
 
-// res.locals.allPokemon
-
-const options = [
-  { value: {pikachu}, label: pikachu.name },
-  { value: "Butterfly", label: "Butterfly" },
-  { value: "Honeybee", label: "Honeybee" },
-  { value: "Honeybee", label: "Honeybee" },
-  { value: "Honeybee", label: "Honeybee" }
-];
+// const options = [
+//   { value: "pikachu", label: "pikachu" },
+//   { value: "Butterfly", label: "Butterfly" },
+//   { value: "Honeybee", label: "Honeybee" },
+  
+// ];
 
 const Home = () => {
+
   const [pokemon, setPokemon] = useState(null);
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/allPokemon')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        const newOptions = data.map(pokemon => ({
+          
+          value: pokemon,
+          label: pokemon.name
+        }));
+        setOptions(newOptions);
+      })
+      .catch(error => console.log(error));
+  }, []);
 
   const handleChange = (value) => {
     console.log("value:", value);
@@ -30,6 +44,7 @@ const Home = () => {
               value={pokemon}
               onChange={handleChange}
               options={options}
+
               isClearable
               isSearchable
             />

@@ -38,10 +38,10 @@ export default function (props) {
   return (
     <form onSubmit={handleSubmit}>
       {/* <input
-        type='text'
-        placeholder='Start Searching...'
-        onChange={handlerChange}
-        value={searchInput}
+        // type='text'
+        // placeholder='Start Searching...'
+        // onChange={handlerChange}
+        // value={searchInput}
       /> */}
     </form>
   );
