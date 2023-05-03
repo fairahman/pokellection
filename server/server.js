@@ -38,9 +38,9 @@ app.use(express.json());
 
 // this looks like a TEST
 
-app.get('/hello', (req, res) => {
-  console.log('made a request');
-  res.status(200).send('hello I am a response');
+app.get('/allPokemon', APIController.getAllPokemon, (req, res) => {
+  console.log('made a request to allPokemon');
+  res.status(200).send(res.locals.allPokemon);
 });
 
 // this route is handling requests to POSTs toward /signup
