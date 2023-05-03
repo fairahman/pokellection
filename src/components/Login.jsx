@@ -1,5 +1,12 @@
 import React, { useState} from "react";
+import { Link } from "react-router-dom";
+// import { Input }
+import Select from "react-tailwindcss-select";
+// import Form from "react-tailwindcss-form";
+import MainContainer from "./MainContainer";
+
 export default function login(props) {
+
 
 	const[userName, setUserName] = useState(props)
 	const[passWord, setPassWord] = useState(props)
@@ -10,24 +17,34 @@ export default function login(props) {
 	function handleSubmit(event) {
 		event.preventDefault()
 	}
+	const handleChangeUserName = (value) => {
+		console.log("value:", value);
+		setUserName(value);
+	};
+  const handleChangePassWord = (value) => {
+		console.log("value:", value);
+		setPassWord(value);
+	};
 	return (
-		<div className="login">
-			{/* <Form onSubmit={handleSubmit}>
-				<Form.Group size="lg" controlId="userName">
-				<Form.Label>Email</Form.Label>
-				<Form.Control autofocus type="email" value={userName} onChange={(e) => setUserName(e.target.value)}
-				/>
-			</Form.Group>
-				<Form.Group size="lg" controlId="password">
-				<Form.Label>Password</Form.Label>
-				<Form.Control type="passWord" value={passWord} onChange={(e) => setPassWord(e.target.value)}
-				/>
-			</Form.Group>
-				<Button block size="lg" type="submit" disabled={!validateForm()}>
-					Login
-				</Button>
-			</Form> */}
-            <h1>Login Page</h1>
-		</div>
+		<div className="flex justify-center items-center h-screen bg-blue-50">
+      <div className="flex flex-col w-full max-w-screen-lg px-4 bg-white rounded-2xl drop-shadow-xl">
+        <div className="grid gap-6 mb-6 md:grid-cols-2">
+          <div className="w-2/3 mt-4 text-6xl">
+            <Input
+              onChange={handleChangeUserName}
+              isClearable
+            />
+          </div>
+          <div className="w-2/3 mt-4 text-6xl">
+            <Select
+              onChange={handleChangePassWord}
+              isClearable
+            />
+          </div>
+        </div>
+      </div>
+    </div>
 	)
 }
+
+// "flex items-center mb-6 px-4 py-4"
