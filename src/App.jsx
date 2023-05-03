@@ -1,7 +1,13 @@
 import React, {useEffect, useState, useRef} from 'react';
+import { Routes, Route } from 'react-router-dom';
 // importing three diffrent hooks from React
 
+import Home from "./components/Home.jsx"
+import Login from "./client/components/Login.jsx"
+import Signup from "./components/Signup.jsx"
+
 import MainContainer from './client/containers/mainContainer';
+// import LoginContainer from './client/components/Login';
 
 import './styles.css';
 
@@ -9,6 +15,8 @@ import './styles.css';
 // inside we are defining the login .. this is the react component that will render
 // there's no point in taking in props here as it's the top component and is therefore not receiving any freakin' prop!
 
+
+/*
 export default function App(props) {
 
     // useRef here is a React hook .. by using useRef we update the componnent without changing it's state
@@ -97,4 +105,15 @@ export default function App(props) {
 
     )
 }
+*/
 
+export default function App() {
+  return(
+    <Routes>
+      <Route index element={ <Home />} />
+      <Route path='/signup' element={ <Signup />} />
+      <Route path='/login' element={<Login/>} />
+      <Route path='/deck' element={ <Deck />} />
+    </Routes>
+  )
+}
