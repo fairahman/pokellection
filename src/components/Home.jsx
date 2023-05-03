@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import Select from "react-tailwindcss-select";
 import MainContainer from "./MainContainer";
 
+// res.locals.allPokemon
+
 const options = [
-  { value: "pikachu", label: "pikachu" },
+  { value: {pikachu}, label: pikachu.name },
   { value: "Butterfly", label: "Butterfly" },
+  { value: "Honeybee", label: "Honeybee" },
+  { value: "Honeybee", label: "Honeybee" },
   { value: "Honeybee", label: "Honeybee" }
 ];
 
