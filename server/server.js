@@ -37,7 +37,13 @@ app.use(express.json());
 // );
 
 // this looks like a TEST
-
+app.post('/save', userController.saveCard, (req, res) => {
+   console.log("in sever", req.body)
+  res.status(200).json("card saved");
+})
+app.get('/getSavedPoke', APIController.getSavedPoke, (req,res) => {
+  // console.log('made a request to get allPokemon');
+})
 app.get('/allPokemon', APIController.getAllPokemon, (req, res) => {
   console.log('made a request to allPokemon');
   res.status(200).send(res.locals.allPokemon);
@@ -54,11 +60,6 @@ app.post("/signup", userController.createUser, (req, res) => {
 
 app.post("/login", userController.getUser, (req, res) => {
   res.status(200).json(res.locals.truthy);
-  // res.redirect("/")
-})
-
-app.post('/save', userController.savePokemon, (req, res) => {
-  res.status(200).send(res.locals.savedPokemon)
 })
 
 

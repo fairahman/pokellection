@@ -52,7 +52,7 @@ const Home = () => {
             <MainContainer pokemon={pokemon}/>
           </div>
         </div>
-        {/* <div className="flex justify-between">
+         <div className="flex justify-between">
           <Link to="/login" className="text-blue-600 hover:underline">
             this is login page
           </Link>
@@ -61,7 +61,6 @@ const Home = () => {
           </Link>
           <Link to='/deck'>Deck</Link>
         </div>
-
       </div>
     </div>
   );
