@@ -15,7 +15,8 @@
   },
   plugins: [
     require('flowbite/plugin'),
-    require("daisyui")
+    require("daisyui"),
+    require('@tailwindcss/forms'),
   ],
   daisyui: {
     themes: ["winter"],

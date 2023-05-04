@@ -31,30 +31,31 @@ const Home = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-blue-50">
-      <div className="flex flex-col w-full max-w-screen-lg px-4 bg-white rounded-2xl drop-shadow-xl">
-        <div className="flex items-center mb-6 px-4 py-4">
-          <div className="w-1/3 mr-4 text-6xl">
+    <div className="flex justify-center items-center h-screen bg-gradient-to-r from-teal-400 to-yellow-200">
+      <div className="flex flex-col w-full max-w-screen-lg px-4 bg-white rounded-2xl drop-shadow-xl bg-opacity-70">
+        <div className="flex mb-6 px-4 py-4">
+          <div className="w-1/3 mr-4">
             <Select
               // value={value}
               onChange={handleChange}
               options={options}
-              isClearable
+              // isClearable
+              primaryColor="indigo"
               isSearchable
             />
           </div>
-          <div className="w-2/3">
+          <div className="w-2/3 justify-center items-center bg-white bg-opacity-90 rounded-xl px-5 py-5">
             <MainContainer pokemon={pokemon}/>
           </div>
         </div>
-        <div className="flex justify-between">
+        {/* <div className="flex justify-between">
           <Link to="/login" className="text-blue-600 hover:underline">
-            thi is login page
+            this is login page
           </Link>
           <Link to="/signup" className="text-blue-600 hover:underline">
             signup page
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

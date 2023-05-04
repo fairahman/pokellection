@@ -23,6 +23,7 @@
     "@babel/core": "^7.21.5",
     "@babel/preset-env": "^7.21.5",
     "@babel/preset-react": "^7.18.6",
+    "@tailwindcss/forms": "^0.5.3",
     "autoprefixer": "^10.4.14",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
@@ -54,8 +55,8 @@
     "pokemontcgsdk": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.11.0",
     "react-tailwindcss-select": "^1.8.5",
-    "sass": "^1.62.1",
-    "react-router-dom": "^6.11.0"
+    "sass": "^1.62.1"
   }
 }
