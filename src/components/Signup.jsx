@@ -1,101 +1,63 @@
-import React from 'react';
+// import React from 'react';
 
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-export default function Signup() {
-  return (
-    <>
-      {/*
-        This example requires updating your template:
+// const Signup = () => {
+//   return <h1>Signup Page</h1>;
+// };
 
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
-          </h2>
-        </div>
+// export default Signup;
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                Email address
-              </label>
-              <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+import React, { useState} from "react";
+import { Link } from "react-router-dom";
+// import { Input }
+import Select from "react-tailwindcss-select";
+// import Form from "react-tailwindcss-form";
+import MainContainer from "./MainContainer";
 
-            <div>
-              <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                  Password
-                </label>
-                <div className="text-sm">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    Forgot password?
-                  </a>
-                </div>
-              </div>
-              <div className="mt-2">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+export default function Signup(props) {
 
-            <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Sign in
-              </button>
-            </div>
+
+	const[userName, setUserName] = useState()
+	const[passWord, setPassWord] = useState()
+	
+	function validateForm() {
+		return userName.length > 0 && passWord.length > 0
+	}
+	function handleSubmit(event) {
+		event.preventDefault()
+    fetch ("/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({username: userName, password: passWord})
+    }).then(response => response.json()).then(response => console.log(response))
+
+    // setUserName(event.target.userName.value);
+    // setPassWord(event.target.passWord.value);
+    console.log("user name ",userName, "password ", passWord)
+	}
+	const handleChangeUserName = (value) => {
+		console.log("value:", value);
+		setUserName(value);
+	};
+  const handleChangePassWord = (value) => {
+		console.log("value:", value);
+		setPassWord(value);
+	};
+	return (
+		<div className="flex justify-center items-center h-screen bg-blue-50">
+      <div className="flex flex-col w-full max-w-screen-lg px-4 bg-white rounded-2xl drop-shadow-xl">
+        <div className="grid gap-6 mb-6 md:grid-cols-2">
+          <form className="flex flex-col" >
+            <label for="userName" >User Name</label>
+              <input type="text" name="userName" onChange={(e) => handleChangeUserName(e.target.value)}/>
+            <label for="passWord" >Password</label>
+              <input type="text" name="passWord" onChange={(e) => handleChangePassWord(e.target.value)}/>
+            {/* <input type="submit" value="Submit" /> */}
+            <button type="submit" onClick={handleSubmit}>Sign Up</button>
           </form>
-
-          <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Start a 14 day free trial
-            </a>
-          </p>
         </div>
       </div>
-    </>
-  )
+    </div>
+	)
 }
