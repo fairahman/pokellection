@@ -37,6 +37,21 @@ userController.createUser = (req, res, next) => {
     })
 }
 
+
+userController.savePokemon = async (req, res, next) => {
+    console.log('in the save')
+    const { pokemonToSave } = req.body
+    // findoneandupdate // find the current user's object and push the clicked pokemon into their 'deck' array
+    try {
+        console.log('in the try')
+        res.locals.savedPokemon = await User.findOneAndUpdate({ _id: '6453bd4918e98d00e06e87d7' }, { $push: { "deck": { pokemonToSave } } })
+    }
+    catch (err) {
+        console.log(err)
+        next(err)
+    }
+}
+
 // we are sending a findOne request with the username pulled from the request body to the MONGO database
 
 

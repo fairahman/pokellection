@@ -56,6 +56,10 @@ app.post("/login", userController.getUser, (req, res) => {
   res.status(200).json(res.locals.truthy);
 })
 
+app.post('/save', userController.savePokemon, (req, res) => {
+  res.status(200).send(res.locals.savedPokemon)
+})
+
 
 // global route error handler
 
