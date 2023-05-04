@@ -53,8 +53,8 @@ const Home = () => {
           </div>
         </div>
         <div className="flex justify-between">
-          <Link to="/" className="text-blue-600 hover:underline">
-             Log Out
+          <Link to="/" className="text-gray-500 hover:underline">
+             Logout
           </Link>
           <Link to='/deck'>Deck</Link>
         </div>

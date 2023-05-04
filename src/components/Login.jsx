@@ -69,8 +69,8 @@ export default function login(props) {
                         <input type="text" name="userName" onChange={(e) => handleChangeUserName(e.target.value)}/>
                         <label for="passWord" >Password</label>
                         <input type="password" name="passWord" onChange={(e) => handleChangePassWord(e.target.value)}/>
-                        <button type="submit" onClick={handleSubmit}>Login</button>
-                        <button type="submit" onClick={handleSignUp}>Signup</button>
+                        <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Login</button>
+                        <button className="btn btn-outline btn-primary" type="submit" onClick={handleSignUp}>Signup</button>
                 </div>
             </div>
         </div>
