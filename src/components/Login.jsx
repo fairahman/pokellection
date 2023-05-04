@@ -1,5 +1,5 @@
-import React, { useState} from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 // import { Input }
 import Select from "react-tailwindcss-select";
 // import Form from "react-tailwindcss-form";
@@ -14,6 +14,8 @@ export default function login(props) {
 	function validateForm() {
 		return userName.length > 0 && passWord.length > 0
 	}
+  const [stateIsVarified, setStateIsVarified] = useState(false);
+
 	function handleSubmit(event) {
 		event.preventDefault()
     fetch ("/login", {
@@ -22,12 +24,21 @@ export default function login(props) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({username: userName, password: passWord})
-    }).then(response => response.json()).then(response => console.log(response))
+    }).then(response => response.json()).then(response => setStateIsVarified(response))
 
     // setUserName(event.target.userName.value);
     // setPassWord(event.target.passWord.value);
     console.log("user name ",userName, "password ", passWord)
 	}
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    // const navigate = useNavigate()
+    if (stateIsVarified) {navigate("/home")}
+  },[stateIsVarified])
+
+
+
 	const handleChangeUserName = (value) => {
 		console.log("value:", value);
 		setUserName(value);
@@ -45,7 +56,7 @@ export default function login(props) {
               <input type="text" name="userName" onChange={(e) => handleChangeUserName(e.target.value)}/>
             <label for="passWord" >Password</label>
               <input type="text" name="passWord" onChange={(e) => handleChangePassWord(e.target.value)}/>
-            <input type="submit" value="Submit" />
+            {/* <input type="submit" value="Submit" /> */}
             <button type="submit" onClick={handleSubmit}>Login</button>
           </form>
         </div>
