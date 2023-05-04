@@ -44,7 +44,7 @@ export default function login(props) {
     }).then(response => response.json()).then(response => {
       if (response !== undefined) {
         // navigate("/home")
-        navigate("/signUpMessage")
+        // navigate("/signUpMessage")
       }
     })
     .catch(err => console.log(err))
