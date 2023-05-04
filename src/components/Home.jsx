@@ -27,6 +27,7 @@ const Home = () => {
 
   const handleChange = (value) => {
     console.log("option name:", value.value);
+    console.log("allPokes", allPokemon);
     setPokemon(allPokemon.find(obj => obj.name === value.value));
   };
 
@@ -51,14 +52,12 @@ const Home = () => {
             <MainContainer pokemon={pokemon}/>
           </div>
         </div>
-        {/* <div className="flex justify-between">
-          <Link to="/login" className="text-blue-600 hover:underline">
-            this is login page
+        <div className="flex justify-between">
+          <Link to="/" className="text-blue-600 hover:underline">
+             Log Out
           </Link>
-          <Link to="/signup" className="text-blue-600 hover:underline">
-            signup page
-          </Link>
-        </div> */}
+          <Link to='/deck'>Deck</Link>
+        </div>
       </div>
     </div>
   );

@@ -1,16 +1,7 @@
-// import React from 'react';
-
-// const Signup = () => {
-//   return <h1>Signup Page</h1>;
-// };
-
-// export default Signup;
 
 import React, { useState} from "react";
 import { Link } from "react-router-dom";
-// import { Input }
 import Select from "react-tailwindcss-select";
-// import Form from "react-tailwindcss-form";
 import MainContainer from "./MainContainer";
 
 export default function Signup(props) {
