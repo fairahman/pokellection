@@ -88,8 +88,10 @@ userController.createUser = (req, res, next) => {
   User.findOne({ username })
     .then(existingUser => {
       if (existingUser) {
+        res.locals.newUser = false
         // If the username already exists, route to a different handler
-        return userController.handleExistingUser(req, res, next);
+        return next()
+        // return userController.handleExistingUser(req, res, next);
       } else {
         // If the username doesn't exist, proceed with creating the new user
         bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {

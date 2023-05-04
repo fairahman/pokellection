@@ -42,9 +42,11 @@ export default function login(props) {
       // console.log("handleSignUp ", body)
       body: JSON.stringify({username: userName, password: passWord})
     }).then(response => response.json()).then(response => {
-      if (response !== undefined) {
+      console.log("response ", response)
+      if (response) {
         navigate("/home")
-        // navigate("/signUpMessage")
+      } else {
+        navigate("/signUpMessage")
       }
     })
     .catch(err => console.log(err))
