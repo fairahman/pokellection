@@ -34,7 +34,7 @@ export default function MainContainer(props) {
         <div id="pokemonInfo" className="flex felx-row gap-6">
           
           <PokemonCard card={props.pokemon.images.small}/> 
-          <CardDetail name={props.pokemon.name} price={props.pokemon.price} hp = {props.pokemon.hp} rarity = {props.pokemon.rarity} level = {props.pokemon.level} type = {props.pokemon.types}/>
+          <CardDetail id = {props.pokemon._id} name={props.pokemon.name} price={props.pokemon.price} hp = {props.pokemon.hp} rarity = {props.pokemon.rarity} level = {props.pokemon.level} type = {props.pokemon.types}/>
         </div>
     </div>
     )

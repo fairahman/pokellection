@@ -1,40 +1,55 @@
 const { User } = require('../models/all_models.js');
 const bcrypt = require('bcryptjs');
 // const popup = require('.../src');
-
+const userId = "64541412d237ca33d89042a6";
 
 const SALT_WORK_FACTOR = 10;
 
 
 
 const userController = {};
+userController.saveCard = async (req,res, next) => {
 
+  const {id} = req.body;
+
+  console.log("pokemon id", id);
+  try {
+    
+     await User.findOneAndUpdate({_id: userId}, {$push:{"deck": id}});
+  }
+  catch(err) {
+    console.log('error from usercontroller', err)
+  }
+  
+
+  next();
+}
 // this is where we add some tastyy salt
 // deconstruct the request body to have two variables named 'username' and 'password'
 // using bcrypt we are hashing and storing the user to their MONGO database
 // we're setting res.locals.newUser to the returned data which is likely the new user
 
 userController.createUser = (req, res, next) => {
-    console.log("createUser middleware")
-    const { username } = req.body;
-    let { password } = req.body;
-    bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
-        bcrypt.hash(password, salt, (err, hash) => {
-            User.create({ username: username, password: hash })
-                .then(data => {
-                    res.locals.newUser = data;
-                    console.log("data", data)
-                    return next();
-                })
-                .catch(err => {
-                    const errObj = {
-                        log: 'Error occurred in user.create',
-                        status: 400,
-                        message: 'Error occurred'
-                    };
-                    return next(errObj);
-                })
+  console.log("createUser middleware")
+  const { username } = req.body;
+  let { password } = req.body;
+  bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
+    bcrypt.hash(password, salt, (err, hash) => {
+      User.create({ username: username, password: hash })
+        .then(data => {
+          res.locals.newUser = data;
+          console.log("data", data)
+          return next();
         })
+        .catch(err => {
+          const errObj = {
+            log: 'Error occurred in user.create',
+            status: 400,
+            message: 'Error occurred'
+          };
+          return next(errObj);
+        })
+      })
     })
 }
 
@@ -59,11 +74,11 @@ userController.savePokemon = async (req, res, next) => {
 userController.getUser = (req, res, next) => {
   //const { username } = req.body;
   console.log("before user find one")
-  console.log("req body: ", req.body)
+  console.log("req body: ", req.body.username)
   User.findOne({ username: req.body.username })/*, (err, result) => {*/
     .then(async (results) => {
       console.log("results", results)
-      const passwordMatch = await bcrypt.compare(req.body.password, results.password);
+      const passwordMatch = await bcrypt.compare(req.body.password, results.password); //await was before bcrypt
       console.log('PASSWORD MATCH: ', passwordMatch);
       res.locals.truthy = passwordMatch;
       return next();
@@ -125,8 +140,8 @@ userController.createUser = (req, res, next) => {
 userController.handleExistingUser = (req, res, next) => {
   console.log("handleExistingUser middleware");
   const { username } = req.body;
-  // alert("User Name Exists")
-  res.render( (fddf), { message: `Username ${username} already exists` });
+  alert("User Name Exists")
+  // res.render( (fddf), { message: `Username ${username} already exists` });
   const errObj = {
     log: 'Username already exists',
     status: 402,
