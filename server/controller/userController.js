@@ -1,14 +1,29 @@
 const { User } = require('../models/all_models.js');
 const bcrypt = require('bcryptjs');
 // const popup = require('.../src');
-
+const userId = "64541412d237ca33d89042a6";
 
 const SALT_WORK_FACTOR = 10;
 
 
 
 const userController = {};
+userController.saveCard = async (req,res, next) => {
 
+  const {id} = req.body;
+
+  console.log("pokemon id", id);
+  try {
+    
+     await User.findOneAndUpdate({_id: userId}, {$push:{"deck": id}});
+  }
+  catch(err) {
+    console.log('error from usercontroller', err)
+  }
+  
+
+  next();
+}
 // this is where we add some tastyy salt
 // deconstruct the request body to have two variables named 'username' and 'password'
 // using bcrypt we are hashing and storing the user to their MONGO database

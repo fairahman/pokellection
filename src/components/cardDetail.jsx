@@ -2,16 +2,28 @@ import React from 'react'
 
 export default function cardDetail(props){ // changed props
     function handleClick() {
-        
-            const options = {
+        //     console.log("props name", props.name);
+             const data = {id: props.id}
+        //     method: 'POST',
+        //     body: {name: props.name},
+        //     };
+        // fetch('/save', options)
+        // .then(data => data.json())
+        // .then(data => console.log(data));
+        fetch('/save', {
             method: 'POST',
             headers: {
-            'Content-Type': 'application/json',
+              'Content-Type': 'application/json'
             },
-            body: JSON.stringify(props.name),
-            };
-        fetch('/save', options)
-        .then(data => data.json())
+            body: JSON.stringify(data)
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log("returned data:", data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
     }
     return(
         <div id="Information" className="flex flex-col space-y-2">
