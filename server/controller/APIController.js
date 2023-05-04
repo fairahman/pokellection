@@ -17,6 +17,7 @@ APIController.getAllPokemon = async (req, res, next) => {
   return next()
 }
 
+
 APIController.getData = (req, res, next) => {
   const name = req.body.name;
   console.log('name is currently: ', name);
