@@ -27,6 +27,7 @@ const Home = () => {
 
   const handleChange = (value) => {
     console.log("option name:", value.value);
+    console.log("allPokes", allPokemon);
     setPokemon(allPokemon.find(obj => obj.name === value.value));
   };
 
@@ -54,6 +55,7 @@ const Home = () => {
           <Link to="/signup" className="text-blue-600 hover:underline">
             signup page
           </Link>
+          <Link to='/deck'>Deck</Link>
         </div>
       </div>
     </div>
