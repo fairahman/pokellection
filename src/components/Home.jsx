@@ -49,7 +49,7 @@ const Home = () => {
         </div>
         <div className="flex justify-between">
           <Link to="/login" className="text-blue-600 hover:underline">
-            login page
+            thi is login page
           </Link>
           <Link to="/signup" className="text-blue-600 hover:underline">
             signup page
