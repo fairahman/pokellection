@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function cardDetail(props){
+export default function cardDetail(props){ // changed props
     return(
     <div id="Information">
     <div id="Name">Name:{props.name}</div>
