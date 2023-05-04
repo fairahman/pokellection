@@ -43,8 +43,8 @@ export default function login(props) {
       body: JSON.stringify({username: userName, password: passWord})
     }).then(response => response.json()).then(response => {
       if (response !== undefined) {
-        // navigate("/home")
-        navigate("/signUpMessage")
+        navigate("/home")
+        // navigate("/signUpMessage")
       }
     })
     .catch(err => console.log(err))
