@@ -3,36 +3,31 @@ import { Link } from "react-router-dom";
 import Select from "react-tailwindcss-select";
 import MainContainer from "./MainContainer";
 
-// const options = [
-//   { value: "pikachu", label: "pikachu" },
-//   { value: "Butterfly", label: "Butterfly" },
-//   { value: "Honeybee", label: "Honeybee" },
-  
-// ];
-
 const Home = () => {
 
-  const [pokemon, setPokemon] = useState(null);
+  const [allPokemon, setAllPokemon] = useState(null);
   const [options, setOptions] = useState([]);
+  const [pokemon, setPokemon] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:8080/allPokemon')
+    fetch('/allPokemon')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
-        const newOptions = data.map(pokemon => ({
-          
-          value: pokemon,
-          label: pokemon.name
+
+        const newOptions = data.map(poke => ({
+          value: poke.name,
+          label: poke.name
         }));
+
         setOptions(newOptions);
+        setAllPokemon(data);
       })
       .catch(error => console.log(error));
   }, []);
 
   const handleChange = (value) => {
-    console.log("value:", value);
-    setPokemon(value);
+    console.log("option name:", value.value);
+    setPokemon(allPokemon.find(obj => obj.name === value.value));
   };
 
   return (
@@ -41,24 +36,23 @@ const Home = () => {
         <div className="flex items-center mb-6 px-4 py-4">
           <div className="w-1/3 mr-4 text-6xl">
             <Select
-              value={pokemon}
+              // value={value}
               onChange={handleChange}
               options={options}
-
               isClearable
               isSearchable
             />
           </div>
           <div className="w-2/3">
-            <MainContainer value={pokemon} />
+            <MainContainer pokemon={pokemon}/>
           </div>
         </div>
         <div className="flex justify-between">
           <Link to="/login" className="text-blue-600 hover:underline">
-            Click to view our login page
+            login page
           </Link>
           <Link to="/signup" className="text-blue-600 hover:underline">
-            Click to view our signup page
+            signup page
           </Link>
         </div>
       </div>
