@@ -1,16 +1,7 @@
-// import React from 'react';
-
-// const Signup = () => {
-//   return <h1>Signup Page</h1>;
-// };
-
-// export default Signup;
 
 import React, { useState} from "react";
 import { Link } from "react-router-dom";
-// import { Input }
 import Select from "react-tailwindcss-select";
-// import Form from "react-tailwindcss-form";
 import MainContainer from "./MainContainer";
 
 export default function Signup(props) {
@@ -36,6 +27,21 @@ export default function Signup(props) {
     // setPassWord(event.target.passWord.value);
     console.log("user name ",userName, "password ", passWord)
 	}
+  function handleLogin(event) {
+		event.preventDefault()
+    fetch ("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({username: userName, password: passWord})
+    }).then(response => response.json()).then(response => console.log(response))
+
+    // setUserName(event.target.userName.value);
+    // setPassWord(event.target.passWord.value);
+    console.log("user name ",userName, "password ", passWord)
+	}
+  
 	const handleChangeUserName = (value) => {
 		console.log("value:", value);
 		setUserName(value);
@@ -52,9 +58,10 @@ export default function Signup(props) {
             <label for="userName" >User Name</label>
               <input type="text" name="userName" onChange={(e) => handleChangeUserName(e.target.value)}/>
             <label for="passWord" >Password</label>
-              <input type="text" name="passWord" onChange={(e) => handleChangePassWord(e.target.value)}/>
+              <input type="password" name="passWord" onChange={(e) => handleChangePassWord(e.target.value)}/>
             {/* <input type="submit" value="Submit" /> */}
             <button type="submit" onClick={handleSubmit}>Sign Up</button>
+            <button type="submit" onClick={handleLogin}>Login</button>
           </form>
         </div>
       </div>
