@@ -21,7 +21,7 @@ async function connect() {
 
 connect();
 
-// THE API CALL IS COMMENTED OUT BELOW ON PURPOSE // NO NEED TO RE-RUN // 
+// // THE API CALL IS COMMENTED OUT BELOW ON PURPOSE // NO NEED TO RE-RUN // 
 
 // async function apiCall() {
 //   try {
@@ -53,7 +53,7 @@ connect();
 //         attacks: element.attacks,
 //         rarity: element.rarity,
 //         images: element.images,
-//         price: element.price
+//         price: element.cardmarket.prices.trendPrice
 //       })
 //     })
 //   }

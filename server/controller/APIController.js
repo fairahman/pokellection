@@ -1,5 +1,3 @@
-console.log('were in the API controller')
-
 const { Card } = require('../models/all_models.js')
 
 const APIController = {};
@@ -12,6 +10,13 @@ const APIController = {};
 // then the promise chain is being handled afterward and we return 'data.rows[0]'
 // then we build an object by assinging the result of the query to properties
 // then saved to res.locals as 'selected pokemon' property
+
+APIController.getAllPokemon = async (req, res, next) => {
+  const allPokemon = await Card.find({})
+  res.locals.allPokemon = allPokemon
+  return next()
+}
+
 
 APIController.getData = (req, res, next) => {
   const name = req.body.name;

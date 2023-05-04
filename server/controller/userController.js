@@ -14,29 +14,44 @@ const userController = {};
 // using bcrypt we are hashing and storing the user to their MONGO database
 // we're setting res.locals.newUser to the returned data which is likely the new user
 
-// userController.createUser = (req, res, next) => {
-//   console.log("createUser middleware")
-//   const { username } = req.body; //check if username is already taken.
-//   let { password } = req.body;
-//   bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
-//     bcrypt.hash(password, salt, (err, hash) => {
-//       User.createfind({ username: username, password: hash })
-//         .then(data => {
-//           res.locals.newUser = data;
-//           // console.log("data", data)
-//           return next();
-//         })
-//         .catch(err => {
-//           const errObj = {
-//             log: 'Error occurred in user.create',
-//             status: 400,
-//              message: 'Error occurred'
-//           };
-//           return next(errObj);
-//         })
-//       })
-//     })
-// }
+userController.createUser = (req, res, next) => {
+    console.log("createUser middleware")
+    const { username } = req.body;
+    let { password } = req.body;
+    bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
+        bcrypt.hash(password, salt, (err, hash) => {
+            User.create({ username: username, password: hash })
+                .then(data => {
+                    res.locals.newUser = data;
+                    console.log("data", data)
+                    return next();
+                })
+                .catch(err => {
+                    const errObj = {
+                        log: 'Error occurred in user.create',
+                        status: 400,
+                        message: 'Error occurred'
+                    };
+                    return next(errObj);
+                })
+        })
+    })
+}
+
+
+userController.savePokemon = async (req, res, next) => {
+    console.log('in the save')
+    const { pokemonToSave } = req.body
+    // findoneandupdate // find the current user's object and push the clicked pokemon into their 'deck' array
+    try {
+        console.log('in the try')
+        res.locals.savedPokemon = await User.findOneAndUpdate({ _id: '6453bd4918e98d00e06e87d7' }, { $push: { "deck": { pokemonToSave } } })
+    }
+    catch (err) {
+        console.log(err)
+        next(err)
+    }
+}
 
 // // we are sending a findOne request with the username pulled from the request body to the MONGO database
 
