@@ -34,7 +34,7 @@ export default function MainContainer(props) {
         <div id="pokemonInfo">
           
           <PokemonCard card={props.pokemon.images.small}/> 
-          {/* <CardDetail name={pokemon.name}price={pokemon.cardmarket.prices.averageSellPrice}/> */}
+          <CardDetail name={pokemon.name}price={pokemon.cardmarket.prices.averageSellPrice}/>
         </div>
     </div>
     )

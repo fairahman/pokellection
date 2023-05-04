@@ -16,7 +16,7 @@ const Home = () => {
 
         const newOptions = data.map(poke => ({
           value: poke.name,
-          label: poke.name
+          label: poke.name.concat(': ', poke.rarity)
         }));
 
         setOptions(newOptions);
