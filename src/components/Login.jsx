@@ -7,30 +7,42 @@ export default function login(props) {
 
 	const[userName, setUserName] = useState()
 	const[passWord, setPassWord] = useState()
-    const [stateIsVarified, setStateIsVarified] = useState(false);
-    const navigate = useNavigate()
-	
-	function validateForm() {
-		return userName.length > 0 && passWord.length > 0
-	}
-    
+  const [stateIsVarified, setStateIsVarified] = useState(false);
+  const navigate = useNavigate()
+
 	function handleSubmit(event) {
 		event.preventDefault()
-        fetch ("/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({username: userName, password: passWord})
-        })
-        .then(response => response.json())
-        .then(response => {
-            
-            if(response === true) {
-                navigate("/home")
-            }
-        })
-        .catch(err => console.log(err))
+    fetch ("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({username: userName, password: passWord})
+    }).then(response => response.json()).then(response => {
+      if (response === true) {
+        navigate("/home")
+      }
+    })
+    .catch(err => console.log(err))
+
+    console.log("user name ",userName, "password ", passWord)
+	}
+  function handleSignUp(event) {
+		event.preventDefault()
+    fetch ("/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // console.log("handleSignUp ", body)
+      body: JSON.stringify({username: userName, password: passWord})
+    }).then(response => response.json()).then(response => {
+      if (response !== undefined) {
+        navigate("/home")
+      }
+    })
+    .catch(err => console.log(err))
+    console.log("user name ",userName, "password ", passWord)
 	}
 
 	const handleChangeUserName = (value) => {
@@ -52,7 +64,7 @@ export default function login(props) {
                         <label for="passWord" >Password</label>
                         <input type="password" name="passWord" onChange={(e) => handleChangePassWord(e.target.value)}/>
                         <button type="submit" onClick={handleSubmit}>Login</button>
-                        <button type="submit" onClick={handleSubmit}>Signup</button>
+                        <button type="submit" onClick={handleSignUp}>Signup</button>
                 </div>
             </div>
         </div>
