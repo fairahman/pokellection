@@ -7,10 +7,8 @@ export default function login(props) {
 
 	const[userName, setUserName] = useState()
 	const[passWord, setPassWord] = useState()
-    const [stateIsVarified, setStateIsVarified] = useState(false);
-    const navigate = useNavigate()
-	
   const [stateIsVarified, setStateIsVarified] = useState(false);
+  const navigate = useNavigate()
 
 	function handleSubmit(event) {
 		event.preventDefault()
@@ -38,10 +36,12 @@ export default function login(props) {
       },
       // console.log("handleSignUp ", body)
       body: JSON.stringify({username: userName, password: passWord})
-    }).then(response => response.json()).then(response => console.log("end of the handle submit"))
-
-    // setUserName(event.target.userName.value);
-    // setPassWord(event.target.passWord.value);
+    }).then(response => response.json()).then(response => {
+      if (response !== undefined) {
+        navigate("/home")
+      }
+    })
+    .catch(err => console.log(err))
     console.log("user name ",userName, "password ", passWord)
 	}
 
@@ -64,7 +64,7 @@ export default function login(props) {
                         <label for="passWord" >Password</label>
                         <input type="password" name="passWord" onChange={(e) => handleChangePassWord(e.target.value)}/>
                         <button type="submit" onClick={handleSubmit}>Login</button>
-                        <button type="submit" onClick={handleSubmit}>Signup</button>
+                        <button type="submit" onClick={handleSignUp}>Signup</button>
                 </div>
             </div>
         </div>
