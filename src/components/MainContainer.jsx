@@ -29,12 +29,12 @@ export default function MainContainer(props) {
   //update state whenever data is fetched from server
   if(props.pokemon !== null) {
     return(
-    
+     
     <div id="main">
         <div id="pokemonInfo">
           
           <PokemonCard card={props.pokemon.images.small}/> 
-          {/* <CardDetail name={pokemon.name}price={pokemon.cardmarket.prices.averageSellPrice}/> */}
+          <CardDetail name={props.pokemon.name} price={props.pokemon.price} hp = {props.pokemon.hp} rarity = {props.pokemon.rarity}/>
         </div>
     </div>
     )
