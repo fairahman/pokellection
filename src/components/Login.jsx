@@ -22,6 +22,11 @@ export default function login(props) {
       if (response === true) {
         navigate("/home")
       }
+      else {
+        navigate("/loginMessage")
+        // alert("User Name or Password is Incorrect")
+
+      }
     })
     .catch(err => console.log(err))
 
@@ -38,7 +43,8 @@ export default function login(props) {
       body: JSON.stringify({username: userName, password: passWord})
     }).then(response => response.json()).then(response => {
       if (response !== undefined) {
-        navigate("/home")
+        // navigate("/home")
+        navigate("/signUpMessage")
       }
     })
     .catch(err => console.log(err))
