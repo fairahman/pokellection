@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Select from "react-tailwindcss-select";
 import MainContainer from "./MainContainer";
-
+import logo from '../PokeCollect-logo.png';
 const Home = () => {
 
   const [allPokemon, setAllPokemon] = useState(null);
@@ -31,7 +31,10 @@ const Home = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-r from-teal-400 to-yellow-200">
+    <div className="flex flex-col justify-center items-center h-screen bg-gradient-to-r from-teal-400 to-yellow-200">
+      <div className="w-1/2">
+        <img src= {logo}/>
+      </div>
       <div className="flex flex-col w-full max-w-screen-lg px-4 bg-white rounded-2xl drop-shadow-xl bg-opacity-70">
         <div className="flex mb-6 px-4 py-4">
           <div className="w-1/3 mr-4">
