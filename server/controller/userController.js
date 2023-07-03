@@ -87,7 +87,7 @@ userController.getUser = (req, res, next) => {
       console.log('THIS IS THE ERROR: ', err);
       const errObj = {
         log: 'AN ERROR IN THE usercontroller.getuser',
-        status: 400,
+        status: 404,
         message: { err: "chill" },
       };
       return next(errObj);
