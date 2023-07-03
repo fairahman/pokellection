@@ -5,7 +5,10 @@ const app = express();
 const PORT = 3000;
 const userController = require('./controller/userController');
 
+
 // app.use('/', express.static(path.join(__dirname,'')))
+
+//handle parsing request body
 app.use(express.json());
 
 // app.get('/', APIController.call, APIController.instantiateTable, (req, res) => {
@@ -13,38 +16,60 @@ app.use(express.json());
 // });
 
 // serves client request for a card
-app.post(
-  '/getPokemon',
-  APIController.getData,
-  APIController.pokemonAPIQuery,
-  (req, res) => {
-    // if the SQL database does not have the result, then redirect
-    console.log('ending the getPoke middleware');
-    if (Object.hasOwn(res.locals, 'selectedPokemon')) {
-      return res.status(200).json(res.locals.selectedPokemon);
-    } else {
-      return res.status(404).redirect('/');
-    }
-  }
-);
+// handle post requests to the '/getpokemon' route
+// it runs two middleware 'getData' and 'pokemonAPIQuery'
+// they assign res.locals to an object which we check on line 28 for the property 'selectedPokemon'
+// we then return res.locals.selectedPokemon back to the frontend
 
-app.get('/hello', (req, res) => {
-  console.log('made a request');
-  res.status(200).send('hello I am a response');
+// app.post(
+//   '/getPokemon',
+//   APIController.getData,
+//   APIController.pokemonAPIQuery,
+//   (req, res) => {
+//     // if the SQL database does not have the result, then redirect
+//     console.log('ending the getPoke middleware');
+//     if (Object.hasOwn(res.locals, 'selectedPokemon')) {
+//       return res.status(200).json(res.locals.selectedPokemon);
+//     } else {
+//       return res.status(404).redirect('/');
+//     }
+//   }
+// );
+
+// this looks like a TEST
+app.post('/save', userController.saveCard, (req, res) => {
+   console.log("in sever", req.body)
+  res.status(200).json("card saved");
+})
+app.get('/getSavedPoke', APIController.getSavedPoke, (req,res) => {
+  // console.log('made a request to get allPokemon');
+})
+app.get('/allPokemon', APIController.getAllPokemon, (req, res) => {
+  console.log('made a request to allPokemon');
+  res.status(200).send(res.locals.allPokemon);
 });
 
+// this route is handling requests to POSTs toward /signup
+
 app.post("/signup", userController.createUser, (req, res) => {
-  console.log('IS THISW ROKING')
+  console.log('IS THIS WOKING')
   res.status(200).send(res.locals.newUser);
 })
+
+// this route is handling requests to POSTs towrad /login 
 
 app.post("/login", userController.getUser, (req, res) => {
   res.status(200).json(res.locals.truthy);
 })
 
+
+// global route error handler
+
 app.use('*', (req, res) => {
   res.sendStatus(404);
 });
+
+// global error handler for the middleware
 
 app.use((err, req, res, next) => {
   const defaultErr = {
